@@ -1,0 +1,189 @@
+<div class="main-content">
+  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+    <div class="container px-4">
+      <a class="navbar-brand" href="../index.html">
+        <img src="" />
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar-collapse-main">
+        <!-- Collapse header -->
+
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a href="../index.html">
+                <img src="../assets/img/brand/blue.png">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Navbar items -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a (click)="supervisor()" class="nav-link nav-link-icon" >
+              <i class="ni ni-circle-08"></i>
+              <span class="nav-link-inner--text">Supervisor</span>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a (click)="alumno()" class="nav-link nav-link-icon" >
+              <i class="ni ni-circle-08"></i>
+              <span style="text-decoration: underline black; color: black;" class="nav-link-inner--text">Alumno</span>
+            </a>
+          </li>
+
+          <li class="nav-item ">
+            <a (click)="compare()" class="nav-link nav-link-icon">
+              <i class="ni ni-circle-08"></i>
+              <span  class="nav-link-inner--text">Comparar</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="header bg-gradient-primary pb-8 pt-5 pt-md-6">
+    <div class="container-fluid">
+      <div class="header-body">
+
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--8">
+    <div class="row">
+
+      <div class="col-xl-4">
+        <div class="card shadow">
+          <div class="card-header bg-transparent">
+            <div class="row align-items-center">
+              <div class="col">
+                <h4 class="mb-0">Registrar Alumno</h4>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- Chart -->
+            <form class="card m-3">
+              <div class="input-group">
+                <input autocomplete="off" [(ngModel)]="codigoBuscar" name="codigo" type="text" class="form-control" placeholder="Promo code">
+                <div class="input-group-append">
+                  <button (click)="onBuscarAlumno(codigoBuscar)" type="button" class="btn btn-primary">Buscar</button>
+                </div>
+              </div>
+            </form>
+            <hr>
+
+
+            <div class="chart">
+              <form role="form" class="m-4">
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input  [value]="Informacion.nombre"  [(ngModel)]="nombre" name="nombre" class="form-control" placeholder="Nombre" type="text">
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input [value]="Informacion.apellido" [(ngModel)]="apellido" name="apellido" type="text" class="form-control">                  </div>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    <input [value]="Informacion.codigo" [(ngModel)]="codigo" name="codigo"  class="form-control" placeholder="Codigo Alumno" type="text">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-image"></i></span>
+                    </div>
+                    <input   multiple
+                    (change)="selectFiles($event)" class="form-control" placeholder="Apellido" type="file">
+                  </div>
+                </div>
+
+
+                <div class="text-center">
+                  <button (click)="uploadFiles()" type="button" class="btn btn-primary mt-2">Guardar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-8">
+        <div  *ngIf="deleteAll" class="card shadow">
+          <div class="card-header bg-transparent">
+            <h5 class="mb-0">Fotos Originales</h5>
+          </div>
+          <div class="text-center">
+            <button (click)="EliminarByAllImagen()" type="button" class="btn btn-sm btn-outline-danger mt-2">Eliminar Todo</button>
+          </div>
+
+
+          <div class="row m-3">
+
+
+
+
+
+          <div *ngFor="let item of FotosOriginales" class="col-md-4 mb-4">
+            <div class="card  ">
+              <img class="bd-placeholder-img" width="100%" height="225"
+              src="{{item}}"
+              alt="">
+            </div>
+            <div style="text-align: center;" class="mt-2">
+              <div class="btn-group">
+                <button (click)="EliminarImagen(item)" type="button"
+                  class="btn btn-sm btn-outline-danger">Eliminar</button>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>

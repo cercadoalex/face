@@ -1,0 +1,175 @@
+<div class="main-content">
+  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+    <div class="container px-4">
+      <a class="navbar-brand" href="../index.html">
+        <img src="" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar-collapse-main">
+        <!-- Collapse header -->
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a href="../index.html">
+                <img src="../assets/img/brand/blue.png">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Navbar items -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a (click)="supervisor()" class="nav-link nav-link-icon" >
+              <i class="ni ni-circle-08"></i>
+              <span style="text-decoration: underline black; color: black;" class="nav-link-inner--text">Supervisor</span>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a (click)="alumno()" class="nav-link nav-link-icon" >
+              <i class="ni ni-circle-08"></i>
+              <span class="nav-link-inner--text">Alumno</span>
+            </a>
+          </li>
+
+          <li class="nav-item ">
+            <a (click)="compare()" class="nav-link nav-link-icon">
+              <i class="ni ni-circle-08"></i>
+              <span  class="nav-link-inner--text">Comparar</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--9">
+    <div class="row">
+
+      <div class="col-xl-4">
+        <div class="card shadow">
+          <div class="card-header bg-transparent">
+            <div class="row align-items-center">
+              <div class="col">
+                <h6 class="text-uppercase text-muted ls-1 mb-1">Lista de suplantadores</h6>
+                <h2 class="mb-0">Ultimas fotos de suplantadores</h2>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- Chart -->
+            <div class="chart">
+              <div *ngFor="let item of listAlert.reverse()">
+                <p  class=" mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>{{item.alumno.codigo}}</span>
+                  <span class="text-nowrap mr-7">{{item.alumno.nombre}}-{{item.alumno.apellido}}</span>
+                  <button (click)="onSelect(item)"  class="btn btn-sm btn-primary">imagen</button>
+                </p>
+                <hr>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-8">
+        <div *ngIf="isloading" >
+          <div class="sk-cube-grid">
+            <div class="sk-cube sk-cube1"></div>
+            <div class="sk-cube sk-cube2"></div>
+            <div class="sk-cube sk-cube3"></div>
+            <div class="sk-cube sk-cube4"></div>
+            <div class="sk-cube sk-cube5"></div>
+            <div class="sk-cube sk-cube6"></div>
+            <div class="sk-cube sk-cube7"></div>
+            <div class="sk-cube sk-cube8"></div>
+            <div class="sk-cube sk-cube9"></div>
+          </div>
+        </div>
+        <div *ngIf="isInfo" class="card shadow">
+          <div class="card-header bg-transparent">
+            <h5 class="mb-0">Foto Capturada del suplantador</h5>
+          </div>
+
+          <div >
+
+            <div class="row m-3">
+
+              <div class="col-md-4">
+                <div class="card  ">
+                    <img  class="bd-placeholder-img card-img-top" width="100%" height="225"
+                    src="{{selectedImg}}"
+                    alt="">
+                  </div>
+              </div>
+
+              <div class="col-md-4">
+                <h4>La confianza : {{isconfidence}}%</h4>
+
+                <h4>Codigo: {{Informacion.codigo}}</h4>
+                <h4>Nombre: {{Informacion.nombre}}</h4>
+                <h4>Apellido: {{Informacion.apellido}}</h4>
+                <h4>Curso: ....</h4>
+                <h4>Carrera: ...</h4>
+                <h4>Tutor: ...</h4>
+
+              </div>
+
+            </div>
+
+            <div class="card-header bg-transparent">
+              <h5 class="mb-0">Fotos Originales</h5>
+            </div>
+            <div class="row m-3">
+
+
+
+              <div *ngFor="let item of FotosOriginales" class="col-md-4">
+                <div class="card  ">
+                    <img  class="bd-placeholder-img" width="100%" height="225"
+                    src="{{item}}"
+                    alt="">
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>

@@ -1,0 +1,13 @@
+
+  .mt--8, .my--8 {
+    margin-top: -10rem !important;
+}
+  .scroll
+{
+     overflow-y:hidden;
+}
+@media (min-width: 1200px){
+.container {
+     max-width: 940px;
+}
+}
