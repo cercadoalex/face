@@ -55,7 +55,6 @@ export class AlumnoComponent implements OnInit {
     for (let i = 0; i < event.target.files.length; i++) {
       this.myFiles.push(event.target.files[i]);
     }
-    console.log('myFiles', this.myFiles);
 
   }
 
@@ -68,16 +67,13 @@ export class AlumnoComponent implements OnInit {
     for (let i = 0; i < this.myFiles.length; i++) {
       formData.append('images', this.myFiles[i]);
     }
-    console.log('formData', formData);
     this.upload(formData);
 
   }
   upload(file) {
-    console.log('Archivos', file);
 
     this.uploadService.upload(file).subscribe(
       event => {
-        console.log('ingreso', file);
         if (!event.error) {
           this.onBuscarAlumno(this.codigo);
           this.Limpiar();
@@ -103,7 +99,6 @@ export class AlumnoComponent implements OnInit {
 
     this.uploadService.GetInformacionAlumno(parametro).subscribe(response => {
       if (!response.error) {
-        console.log('cantidad originales', response.data.fotoOrininals.length);
 
         if (response.data.fotoOrininals.length > 0) {
           this.deleteAll = true;
@@ -134,7 +129,6 @@ export class AlumnoComponent implements OnInit {
 
   }
   EliminarImagen(item): void {
-    console.log('eliminar', item.replace(`${environment.BASE_API}`, ''));
 
 
     this.uploadService

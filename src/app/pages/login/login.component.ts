@@ -31,13 +31,11 @@ export class LoginComponent implements OnInit {
   }
 
   public sendMessage(): void {
-   console.log('hola mundo');
   }
 
   login(){
     this.alumnoService.GetLoginAlumno(this.username).subscribe(response => {
 
-      console.log(response);
       if (!response.error) {
         const nombres = response.data.nombre + ' ' + response.data.apellido;
         sessionStorage.setItem('user', nombres );
@@ -58,7 +56,9 @@ export class LoginComponent implements OnInit {
   mantalumno(){
     this.router.navigate(['/alumno']);
   }
-
+  compare(){
+    this.router.navigate(['/compare']);
+  }
 
 
 

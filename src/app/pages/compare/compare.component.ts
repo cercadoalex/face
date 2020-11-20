@@ -25,12 +25,15 @@ export class CompareComponent implements OnInit {
   borderstyle: any;
   confianza: any;
   foto = false;
+
+  codigoBuscar: any = 'C-000102030';
+
   public showWebcam = true;
  public multipleWebcamsAvailable = false;
  public deviceId: string;
  public videoOptions: MediaTrackConstraints = {
-    width: {ideal: 424},
-    height: {ideal: 476}
+    width: {ideal: 340},
+    height: {ideal: 400}
  };
  public errors: WebcamInitError[] = [];
  // latest snapshot
@@ -58,7 +61,6 @@ export class CompareComponent implements OnInit {
   }
   public handleInitError(error: WebcamInitError): void {
     this.errors.push(error);
-    console.log(error);
   }
  public handleImage(webcamImage: WebcamImage): void {
   this.webcamImage = webcamImage;
@@ -67,16 +69,14 @@ export class CompareComponent implements OnInit {
   data.base64 = webcamImage.imageAsDataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
   data.codigoAlummno = this.userid;
 
-
   this._fileImageService.CreateCompare(data).subscribe(respuesta => {
     this.datacapture = respuesta;
     if (!this.datacapture.error) {
       this.foto = true;
       this.userid = sessionStorage.getItem('userid');
 
-      this.InformacionOriginales(this.userid);
+      // this.InformacionOriginales(this.userid);
       this.selectedImg = `${environment.BASE_API + this.datacapture.path}`;
-      console.log(this.datacapture);
       this.datafaceinfo = this.datacapture.data.message;
       sessionStorage.setItem('code', this.datacapture.data.faceId );
 
@@ -98,11 +98,9 @@ InformacionOriginales(item){
      response.data.fotoOrininals.forEach(obj => {
        const info = {url :  obj.fileFullPath , FullPath: `${environment.BASE_API + obj.fileFullPath}` };
 
-       console.log(info);
        this.FotosOriginales.push(info);
      });
 
-     console.log(response.data);
 
 
   });
@@ -111,13 +109,14 @@ InformacionOriginales(item){
 }
 
 selectOriginal(item){
-  console.log(item.url);
   // this.borderstyle = 'img-select';
   const codeimg = sessionStorage.getItem('code');
+  this.userid = sessionStorage.getItem('userid');
 
-  this._fileImageService.CompareAzureImage(this.userid, codeimg, item.url).subscribe(response => {
+  console.log('OK', this.codigoBuscar, codeimg, item.url);
 
-    console.log(response.confianza);
+  this._fileImageService.CompareAzureImage(this.codigoBuscar, codeimg, item.url).subscribe(response => {
+
 
     this.confianza = response.confianza;
 
@@ -134,6 +133,14 @@ selectimgtest(){
 
 public get triggerObservable(): Observable<void> {
   return this.trigger.asObservable();
+}
+
+
+onBuscarAlumno(parametro: string): void {
+  sessionStorage.setItem('userid',  parametro);
+  this.InformacionOriginales(parametro);
+
+
 }
 
 supervisor(): void{

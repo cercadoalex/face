@@ -72,13 +72,12 @@ export class HomeComponent implements OnInit {
    data.base64 = webcamImage.imageAsDataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
    data.codigoAlummno = this.userid;
 
-   console.log(data);
 
 
 
    this._fileImageService.Create(data).subscribe(response => {
 
-    console.log(response);
+    // console.log(response);
 
    });
 
@@ -99,7 +98,7 @@ export class HomeComponent implements OnInit {
     this.imgUrl = response.data.fileFullPath;
     this.imgOriginals = response.data.fotoOrininals;
 
-    console.log(this.imgOriginals);
+   // console.log(this.imgOriginals);
 
    });
  }

@@ -68,6 +68,14 @@
           <div class="card shadow">
 
             <div class="card-body">
+              <form class="card m-3">
+                <div class="input-group">
+                  <input autocomplete="off" [(ngModel)]="codigoBuscar" name="codigo" type="text" class="form-control" placeholder="Promo code">
+                  <div class="input-group-append">
+                    <button (click)="onBuscarAlumno(codigoBuscar)" type="button" class="btn btn-primary">Buscar</button>
+                  </div>
+                </div>
+              </form>
 
               <div class="webcam">
                 <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
@@ -88,7 +96,7 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h2 class="mb-0">Foto Tomada</h2>
+                  <h2 class="mb-0">Foto Capturada</h2>
                 </div>
               </div>
             </div>
@@ -116,7 +124,7 @@
             <div class="row m-3">
 
               <div class="col-md-4">
-                <textarea name="" id="" cols="50" rows="10">
+                <textarea name="" id="" cols="40" rows="10">
                 {{datafaceinfo}}
                </textarea>
 

@@ -57,16 +57,16 @@ export class SupervisorComponent implements OnInit {
 
     this._hubConnection.start()
     .then(() => {
-        console.log('Hub connection started');
+        // console.log('Hub connection started');
     })
     .catch(err => {
-        console.log('Error while establishing connection');
+        // console.log('Error while establishing connection');
     });
   }
 
 
   public sendMessage(): void {
-    console.log('hub signalR Ingreso debe cargar alerta');
+   // console.log('hub signalR Ingreso debe cargar alerta');
     this.GetAlerta();
 
   }
@@ -75,7 +75,7 @@ export class SupervisorComponent implements OnInit {
  public GetAlerta(): void{
     this._fileImageService.GetAlert().subscribe(response => {
       this.listAlert = response.data;
-      console.log(this.listAlert);
+      // .log(this.listAlert);
     });
 
   }
@@ -101,7 +101,7 @@ export class SupervisorComponent implements OnInit {
 
 
       /// this.selectedImg = this.FotosTrucadas[0];
-       console.log(response.data.alumno);
+      // console.log(response.data.alumno);
        this.isInfo = true;
        this.isloading = false;
 
