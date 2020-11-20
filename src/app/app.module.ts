@@ -7,9 +7,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
 import { AlumnoComponent } from './pages/alumno/alumno.component';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CompareComponent } from './pages/compare/compare.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     SupervisorComponent,
     HomeComponent,
-    AlumnoComponent
+    AlumnoComponent,
+    CompareComponent
   ],
   imports: [
     BrowserModule,

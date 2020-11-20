@@ -45,10 +45,12 @@ export class CompareComponent implements OnInit {
 
     this.username = sessionStorage.getItem('user');
     this.userid = sessionStorage.getItem('userid');
+
+
     WebcamUtil.getAvailableVideoInputs()
-    .then((mediaDevices: MediaDeviceInfo[]) => {
-      this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
-    });
+     .then((mediaDevices: MediaDeviceInfo[]) => {
+       this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+     });
   }
 
   public triggerSnapshot(): void {
@@ -56,6 +58,7 @@ export class CompareComponent implements OnInit {
   }
   public handleInitError(error: WebcamInitError): void {
     this.errors.push(error);
+    console.log(error);
   }
  public handleImage(webcamImage: WebcamImage): void {
   this.webcamImage = webcamImage;

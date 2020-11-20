@@ -1,5 +1,4 @@
 import { environment } from './../../../environments/environment.prod';
-import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AlumnoService } from 'src/app/core/alumno.service';
 import { AlummnoResponse } from 'src/app/models/AlumnoResponse';

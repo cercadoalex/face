@@ -26,13 +26,14 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'alumno',
-    component: AlumnoComponent
-  },
-  {
     path: 'compare',
     component: CompareComponent
   },
+  {
+    path: 'alumno',
+    component: AlumnoComponent
+  },
+
   {
     path: '**',
     redirectTo: 'login',
